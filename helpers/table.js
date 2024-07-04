@@ -122,7 +122,7 @@ export const addTableColumn = async (
     await pool.query(query);
     console.log(`Column ${name} added to table ${tableName}`);
   } catch (err) {
-    console.error('Error adding column:', err.message);
+    console.error('ERROR', err.message);
   }
 };
 
@@ -141,6 +141,27 @@ export const dropTableColumn = async (tableName, columnName) => {
     await pool.query(query);
     console.log(`Column ${columnName} dropped from table ${tableName}`);
   } catch (err) {
-    console.error('Error dropping column:', err.message);
+    console.error('ERROR', err.message);
+  }
+};
+
+export const renameColumn = async (tableName, prevColName, newColName) => {
+  try {
+    const exists = await checkTableColumnExists(tableName, prevColName);
+
+    if (!exists) {
+      console.log(
+        `Column ${prevColName} in table ${tableName} does not exists.`,
+      );
+      return;
+    }
+
+    const query = `ALTER TABLE ${tableName} RENAME ${prevColName} TO ${newColName};`;
+    await pool.query(query);
+    console.log(
+      `Column ${prevColName} renamed to ${newColName} in table ${tableName}`,
+    );
+  } catch (err) {
+    console.error('ERROR', err.message);
   }
 };
