@@ -42,6 +42,17 @@ export const createTable = async (tableName, columnName) => {};
 
 export const dropTable = async (tableName) => {};
 
+export const truncateTable = async (tableName) => {
+  const query = `TRUNCATE TABLE ${tableName} RESTART IDENTITY CASCADE`;
+  try {
+    await pool.query(query);
+    console.log(`Table ${tableName} truncated successfully`);
+  } catch (err) {
+    console.error('ERROR', err.message);
+  } finally {
+    await pool.end();
+  }
+};
 /* -------------------------------------------------------------------------- */
 /*                              Column Operations                             */
 /* -------------------------------------------------------------------------- */

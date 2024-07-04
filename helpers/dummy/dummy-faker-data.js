@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 export class DummyCustomers {
   #TABLE = 'movies.customers';
   #COLUMNS = ['first_name', 'last_name', 'email', 'age'];
-  #count = 1;
+  #count = 2;
 
   fakeData() {
     const output = Array.from({ length: this.#count }, () => [

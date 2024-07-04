@@ -2,6 +2,7 @@ import express, { json, urlencoded } from 'express';
 
 import { insertFakeData } from './helpers/seeders/db-seeders.js';
 import { DummyCustomers } from './helpers/dummy/dummy-faker-data.js';
+import { truncateTable } from './helpers/table.js';
 
 const app = express();
 
@@ -18,13 +19,13 @@ app.use(urlencoded({ extended: true }));
   //   default: 'default_value',
   // });
   // await renameColumn('movies.actors', 'sample_column_1', 'newName');
-
-  const dummyCustomerIns = new DummyCustomers();
-  await insertFakeData(
-    dummyCustomerIns.TABLE,
-    dummyCustomerIns.COLUMNS,
-    dummyCustomerIns.fakeData(),
-  );
+  // const dummyCustomerIns = new DummyCustomers();
+  // await insertFakeData(
+  //   dummyCustomerIns.TABLE,
+  //   dummyCustomerIns.COLUMNS,
+  //   dummyCustomerIns.fakeData(),
+  // );
+  // await truncateTable('movies.customers');
 })();
 
 const PORT = process.env.PORT || 3300;
