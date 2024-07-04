@@ -33,6 +33,19 @@ CHECK
 NOT NULL
 */
 
+/* -------------------------------------------------------------------------- */
+/*                              Table Operations                              */
+/* -------------------------------------------------------------------------- */
+
+// TODO: To create helper of Create Table, Drop Table
+export const createTable = async (tableName, columnName) => {};
+
+export const dropTable = async (tableName) => {};
+
+/* -------------------------------------------------------------------------- */
+/*                              Column Operations                             */
+/* -------------------------------------------------------------------------- */
+
 /**
  * Returns `true` if table exists else `false`
  */
@@ -165,3 +178,6 @@ export const renameColumn = async (tableName, prevColName, newColName) => {
     console.error('ERROR', err.message);
   }
 };
+
+// TODO: To create helper of Change Data Type of Column
+export const changeColumnDataType = async () => {};
