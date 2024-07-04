@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from 'express';
-import pool from './config/connection/db.js';
-import { createSchema, dropSchema } from './helpers/schema.js';
-import { addTableColumn, renameColumn } from './helpers/table.js';
+
+import { insertFakeData } from './helpers/seeders/db-seeders.js';
+import { DummyCustomers } from './helpers/dummy/dummy-faker-data.js';
 
 const app = express();
 
@@ -17,8 +17,14 @@ app.use(urlencoded({ extended: true }));
   //   notNull: true,
   //   default: 'default_value',
   // });
+  // await renameColumn('movies.actors', 'sample_column_1', 'newName');
 
-  await renameColumn('movies.actors', 'sample_column_1', 'newName');
+  const dummyCustomerIns = new DummyCustomers();
+  await insertFakeData(
+    dummyCustomerIns.TABLE,
+    dummyCustomerIns.COLUMNS,
+    dummyCustomerIns.fakeData(),
+  );
 })();
 
 const PORT = process.env.PORT || 3300;

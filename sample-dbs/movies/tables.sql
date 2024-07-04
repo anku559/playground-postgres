@@ -58,3 +58,14 @@ CREATE TABLE
     actor_id INT REFERENCES movies.actors (actor_id),
     PRIMARY KEY (movie_id, actor_id)
   );
+
+---
+--- Create 'customers' Table in 'movies' Schema
+CREATE TABLE
+  IF NOT EXISTS movies.customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(150),
+    age INT
+  );
